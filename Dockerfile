@@ -14,8 +14,9 @@ RUN poetry install --only main --no-root --no-interaction --no-ansi
 
 COPY ./webhook ./webhook
 
-# Change ownership of the working directory
+# Change ownership of the working directory (logs will be mounted from host)
 RUN chown -R webhook:webhook /usr/src
+RUN mkdir -p /usr/src/logs && chown -R webhook:webhook /usr/src/logs
 
 # Switch to non-root user
 USER webhook
