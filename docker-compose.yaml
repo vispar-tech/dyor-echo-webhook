@@ -12,6 +12,8 @@ services:
     container_name: dyor-echo-webhook
     networks:
       - traefiktointernet
+    volumes:
+      - ./logs:/usr/src/logs
     labels:
       - traefik.enable=true
       - traefik.http.routers.webhook.entrypoints=websecure
