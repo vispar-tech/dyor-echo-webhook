@@ -1,0 +1,23 @@
+[project]
+name = "dyor-echo-webhook"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Daniil Pavlovich",email = "layred.dota2@mail.ru"}
+]
+readme = "README.md"
+requires-python = ">=3.12,<4.0"
+dependencies = [
+    "loguru (>=0.7.3,<0.8.0)",
+    "fastapi (>=0.127.0,<0.128.0)",
+    "uvicorn (>=0.14.0,<0.25.0)",
+    "python-dotenv (>=1.0.0,<2.0.0)",
+    "pydantic-settings (>=2.12.0,<3.0.0)"
+]
+
+[tool.poetry]
+package-mode = false
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"

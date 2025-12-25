@@ -1,0 +1,25 @@
+version: "3"
+
+networks:
+  traefiktointernet:
+    external: true
+
+services:
+  webhook:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: dyor-echo-webhook
+    command: /start
+    networks:
+      - traefiktointernet
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.webhook.entrypoints=websecure
+      - traefik.http.routers.webhook.rule=Host(`${WEBHOOK_HOST}`)
+      - traefik.http.routers.webhook.tls=true
+      - traefik.http.routers.webhook.tls.certresolver=letsencrypt
+      - traefik.http.services.webhook.loadbalancer.server.port=${SERVER_PORT}
+      - traefik.docker.network=traefiktointernet
+    env_file:
+      - .env
